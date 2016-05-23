@@ -39,7 +39,7 @@ public class DefaultFeedView extends RelativeLayout {
     private List<RepositoryItem> records;
     private String userName;
     private GHUser user;
-    private DbHelper dbHelper;
+//    private DbHelper dbHelper;
 
     public DefaultFeedView(Context context, AttributeSet attrs) {
         super(context);
@@ -133,14 +133,17 @@ public class DefaultFeedView extends RelativeLayout {
     }
 
     public void doSomeActioAppropriateToButton() {
-        dbHelper = new DbHelper(getContext());
-        final SQLiteDatabase db = dbHelper.getWritableDatabase();
-        final ContentValues cv = new ContentValues();
+//        dbHelper = new DbHelper(getContext());
+       // SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         LinearLayout btns = (LinearLayout) findViewById(R.id.btns);
         Button btnSave = (Button) btns.findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                DbHelper dbHelper = new DbHelper(getContext());
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                ContentValues cv = new ContentValues();
                 Log.d(TAG, "--- Insert in mytable: ---");
                 try {
 
@@ -157,14 +160,19 @@ public class DefaultFeedView extends RelativeLayout {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                if(db.isOpen()) {
+                    dbHelper.close();
+                }
             }
         });
         Button btnDb = (Button) btns.findViewById(R.id.btn_db);
         btnDb.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "--- Rows in mytable: ---");
-                Cursor c = db.query("mytable", null, null, null, null, null, null);
+                DbHelper dbHelper = new DbHelper(getContext());
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                Log.d(TAG, "--- Rows in git_users_table: ---");
+                Cursor c = db.query("git_users_table", null, null, null, null, null, null);
 
                 if (c.moveToFirst()) {
                     int idColIndex = c.getColumnIndex("id");
@@ -179,6 +187,9 @@ public class DefaultFeedView extends RelativeLayout {
                     } while (c.moveToNext());
                 } else
                     Log.d(TAG, "0 rows");
+                if(db.isOpen()) {
+                    dbHelper.close();
+                }
                 c.close();
             }
         });
@@ -190,7 +201,7 @@ public class DefaultFeedView extends RelativeLayout {
                 getFlow().set(new WebScreen(user.getHtmlUrl().toString()));
             }
         });
-        dbHelper.close();
+
     }
 
     private Flow getFlow() {
