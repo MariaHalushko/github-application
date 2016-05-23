@@ -80,7 +80,7 @@
 
         <Button
             android:id="@+id/btn_db"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="@dimen/btns_height"
             android:text="@string/btn_db" />
 

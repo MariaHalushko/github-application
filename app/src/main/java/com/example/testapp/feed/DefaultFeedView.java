@@ -23,7 +23,6 @@ import com.example.testapp.listrepositories.RepositoryListAdapter;
 import com.example.testapp.web.WebScreen;
 import com.squareup.picasso.Picasso;
 
-import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHUser;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
@@ -66,14 +65,15 @@ public class DefaultFeedView extends RelativeLayout {
     private void populateRecords() {
         records = new ArrayList<>();
         try {
+
             for (GHRepository repo : user.getRepositories().values()) {
                 RepositoryItem record = new RepositoryItem();
-                record.setRepositoryTitle(repo.getName());
-                record.setLanguage(repo.getLanguage());
-                record.setForkCount(repo.getForks());
-                record.setStarsCount(repo.listStargazers().asList().size());
+                record.setRepositoryTitle(repo.getValue().getName());
+                record.setLanguage(repo.getValue().getLanguage());
+                record.setForkCount(repo.getValue().getForks());
+                record.setStarsCount(repo.getValue().listStargazers().asList().size());
                 records.add(record);
-            }
+            });
         } catch (IOException e1) {
             e1.printStackTrace();
         }
