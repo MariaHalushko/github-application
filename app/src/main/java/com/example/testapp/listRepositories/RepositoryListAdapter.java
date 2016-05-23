@@ -1,4 +1,4 @@
-package com.example.testapp.listRepositories;
+package com.example.testapp.listrepositories;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,7 +29,6 @@ public class RepositoryListAdapter extends RecyclerView.Adapter<RepositoryListAd
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int index) {
         RepositoryItem record = listRepositories.get(index);
-        Log.d(TAG, "onBindViewHolder: record  "  +  record);
         viewHolder.repositoryTitle.setText(record.getRepositoryTitle() +
                 "\n" + record.getLanguage());
         viewHolder.starsCount.setText(record.getStarsCount()+"");
@@ -43,14 +42,12 @@ public class RepositoryListAdapter extends RecyclerView.Adapter<RepositoryListAd
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView repositoryTitle;
-        TextView repositoryLanguage;
         TextView starsCount;
         TextView forksCount;
 
         public ViewHolder(View itemView) {
             super(itemView);
             repositoryTitle = (TextView) itemView.findViewById(R.id.repository_title_language);
-//            TextView repositoryLanguage;
             starsCount = (TextView) itemView.findViewById(R.id.stars_count);
             forksCount = (TextView) itemView.findViewById(R.id.forks_count);
         }

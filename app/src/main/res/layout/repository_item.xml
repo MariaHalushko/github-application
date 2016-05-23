@@ -6,27 +6,27 @@
 
     <TextView
         android:id="@+id/repository_title_language"
-        android:layout_width="170dp"
-        android:layout_height="40dp" />
+        android:layout_width="@dimen/repository_width"
+        android:layout_height="@dimen/repository_height" />
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/star_size"
+        android:layout_height="@dimen/star_size"
         android:background="@drawable/star" />
 
     <TextView
         android:id="@+id/stars_count"
-        android:layout_width="20dp"
-        android:layout_height="40dp" />
+        android:layout_width="@dimen/count_width"
+        android:layout_height="@dimen/star_size" />
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/star_size"
+        android:layout_height="@dimen/star_size"
         android:background="@drawable/fork" />
 
     <TextView
         android:id="@+id/forks_count"
-        android:layout_width="20dp"
-        android:layout_height="40dp" />
+        android:layout_width="@dimen/count_width"
+        android:layout_height="@dimen/star_size" />
 
 </LinearLayout>

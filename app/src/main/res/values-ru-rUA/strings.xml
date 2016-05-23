@@ -5,6 +5,6 @@
     <string name="btn_text">Підтвердити</string>
     <string name="list_of_repositories">Список репозиторіїв: </string>
     <string name="btn_web_text">Відобразити в інтернеті</string>
-    <string name="btn_save">Зберегти користувача</string>
-    <string name="btn_db">Переглянути базу</string>
+    <string name="btn_save">Зберегти</string>
+    <string name="btn_db">База</string>
 </resources>
