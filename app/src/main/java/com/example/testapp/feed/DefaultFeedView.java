@@ -23,6 +23,7 @@ import com.example.testapp.listrepositories.RepositoryListAdapter;
 import com.example.testapp.web.WebScreen;
 import com.squareup.picasso.Picasso;
 
+import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHUser;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
@@ -38,7 +39,6 @@ public class DefaultFeedView extends RelativeLayout {
     private List<RepositoryItem> records;
     private String userName;
     private GHUser user;
-//    private DbHelper dbHelper;
 
     public DefaultFeedView(Context context, AttributeSet attrs) {
         super(context);
@@ -47,10 +47,6 @@ public class DefaultFeedView extends RelativeLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-//        ((MainActivity)getContext()).setSupportActionBar(myToolbar);
-
         FeedScreen screen = Flow.getKey(this);
         if (screen == null) {
             return;
@@ -68,12 +64,13 @@ public class DefaultFeedView extends RelativeLayout {
 
             for (GHRepository repo : user.getRepositories().values()) {
                 RepositoryItem record = new RepositoryItem();
-                record.setRepositoryTitle(repo.getValue().getName());
-                record.setLanguage(repo.getValue().getLanguage());
-                record.setForkCount(repo.getValue().getForks());
-                record.setStarsCount(repo.getValue().listStargazers().asList().size());
+                record.setRepositoryTitle(repo.getName());
+                record.setLanguage(repo.getLanguage());
+                record.setForkCount(repo.getForks());
+                record.setStarsCount(repo.listStargazers().asList().size());
                 records.add(record);
-            });
+            }
+            ;
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -133,9 +130,6 @@ public class DefaultFeedView extends RelativeLayout {
     }
 
     public void doSomeActioAppropriateToButton() {
-//        dbHelper = new DbHelper(getContext());
-       // SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         LinearLayout btns = (LinearLayout) findViewById(R.id.btns);
         Button btnSave = (Button) btns.findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new OnClickListener() {
@@ -144,7 +138,7 @@ public class DefaultFeedView extends RelativeLayout {
                 DbHelper dbHelper = new DbHelper(getContext());
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 ContentValues cv = new ContentValues();
-                Log.d(TAG, "--- Insert in mytable: ---");
+                Log.d(TAG, "--- Insert in git_users_table: ---");
                 try {
 
                     cv.put("name", user.getName());
@@ -160,7 +154,7 @@ public class DefaultFeedView extends RelativeLayout {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if(db.isOpen()) {
+                if (db.isOpen()) {
                     dbHelper.close();
                 }
             }
@@ -187,7 +181,7 @@ public class DefaultFeedView extends RelativeLayout {
                     } while (c.moveToNext());
                 } else
                     Log.d(TAG, "0 rows");
-                if(db.isOpen()) {
+                if (db.isOpen()) {
                     dbHelper.close();
                 }
                 c.close();
@@ -201,7 +195,6 @@ public class DefaultFeedView extends RelativeLayout {
                 getFlow().set(new WebScreen(user.getHtmlUrl().toString()));
             }
         });
-
     }
 
     private Flow getFlow() {
