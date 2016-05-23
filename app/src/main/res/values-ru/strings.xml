@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Ntcn</string>
+    <string name="question">Введите логин</string>
+    <string name="input_user_name">Логин</string>
+    <string name="btn_text">Подтверждаю</string>
+    <string name="list_of_repositories">Список репозиториев: </string>
+    <string name="btn_web_text">Отобразить в интернете</string>
+    <string name="btn_save">Сохранить пользлвателя</string>
+    <string name="btn_db">Посмотреть базу</string>
+</resources>

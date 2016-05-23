@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.testapp.MainView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:gravity="center"
+        android:text="@string/question"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/question_height"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="120dp"
+        android:hint="@string/input_user_name"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="190dp"
+        android:layout_height="@dimen/button_height"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="55dp"
+        android:text="@string/btn_text" />
+</com.example.testapp.MainView>
