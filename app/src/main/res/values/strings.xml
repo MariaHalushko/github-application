@@ -4,7 +4,7 @@
     <string name="input_user_name">User name</string>
     <string name="btn_text">Ok</string>
     <string name="list_of_repositories">Repositories list: </string>
-    <string name="btn_web_text">Open in the internet</string>
-    <string name="btn_save">Save user</string>
-    <string name="btn_db">See data base</string>
+    <string name="btn_web_text">Open in Browser</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_db">DB</string>
 </resources>

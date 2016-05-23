@@ -1,4 +1,4 @@
-package com.example.testapp.listRepositories;
+package com.example.testapp.listrepositories;
 
 public class RepositoryItem {
     private String repositoryTitle;

@@ -33,15 +33,8 @@ public class MainView extends FrameLayout {
 
         final EditText userName = (EditText) findViewById(R.id.user_name);
         if (button != null) {
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("tag", "onClick: user name " + userName.getText());
-                    getFlow().set(new FeedScreen(userName.getText().toString() ));
-                }
-            });
-            //v -> getFlow().set(new FeedScreen(userName != null ?
-//                    userName.getText().toString() : null)));
+            button.setOnClickListener(v -> getFlow().set(new FeedScreen(userName != null ?
+                    userName.getText().toString() : null)));
         }
     }
 

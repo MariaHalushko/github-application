@@ -1,6 +1,5 @@
 package com.example.testapp.feed;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,11 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.StringBuilderPrinter;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,16 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-//import com.annimon.stream.Stream;
-import com.example.testapp.MainActivity;
+import com.annimon.stream.Stream;
 import com.example.testapp.R;
 import com.example.testapp.db.DbHelper;
-import com.example.testapp.listRepositories.RepositoryItem;
-import com.example.testapp.listRepositories.RepositoryListAdapter;
+import com.example.testapp.listrepositories.RepositoryItem;
+import com.example.testapp.listrepositories.RepositoryListAdapter;
 import com.example.testapp.web.WebScreen;
 import com.squareup.picasso.Picasso;
 
-import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHUser;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
@@ -37,7 +31,6 @@ import org.kohsuke.github.GitHubBuilder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import flow.Flow;
 
@@ -59,7 +52,6 @@ public class DefaultFeedView extends RelativeLayout {
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
 //        ((MainActivity)getContext()).setSupportActionBar(myToolbar);
 
-//myToolbar.setN
         FeedScreen screen = Flow.getKey(this);
         if (screen == null) {
             return;
@@ -71,29 +63,19 @@ public class DefaultFeedView extends RelativeLayout {
         initUserInfo();
         initRepoList();
         doSomeActioAppropriateToButton();
-        Log.d(TAG, "onAttachedToWindow:  userN " + userName);
     }
 
     private void populateRecords() {
         records = new ArrayList<>();
         try {
-//            Stream.of(user.getRepositories()).forEach(repo -> {
-//                RepositoryItem record = new RepositoryItem();
-//                record.setRepositoryTitle(repo.getValue().getName());
-//                record.setLanguage(repo.getValue().getLanguage());
-//                record.setForkCount(repo.getValue().getForks());
-//                record.setStarsCount(repo.getValue().listStargazers().asList().size());
-//                records.add(record);
-//            });
-
-            for (GHRepository repo : user.getRepositories().values()) {
+            Stream.of(user.getRepositories()).forEach(repo -> {
                 RepositoryItem record = new RepositoryItem();
-                record.setRepositoryTitle(repo.getName());
-                record.setLanguage(repo.getLanguage());
-                record.setForkCount(repo.getForks());
-                record.setStarsCount(repo.listStargazers().asList().size());
+                record.setRepositoryTitle(repo.getValue().getName());
+                record.setLanguage(repo.getValue().getLanguage());
+                record.setForkCount(repo.getValue().getForks());
+                record.setStarsCount(repo.getValue().listStargazers().asList().size());
                 records.add(record);
-            }
+            });
         } catch (IOException e1) {
             e1.printStackTrace();
         }

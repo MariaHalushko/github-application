@@ -1,4 +1,4 @@
-package com.example.testapp.listRepositories;
+package com.example.testapp.listrepositories;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
