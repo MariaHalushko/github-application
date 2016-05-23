@@ -69,8 +69,7 @@ public class DefaultFeedView extends RelativeLayout {
                 record.setForkCount(repo.getForks());
                 record.setStarsCount(repo.listStargazers().asList().size());
                 records.add(record);
-            }
-            ;
+            };
         } catch (IOException e1) {
             e1.printStackTrace();
         }
