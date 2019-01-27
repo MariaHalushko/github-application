@@ -1,2 +1,2 @@
 # github-application
-Android application using gitHup Api, show information about users and save it into database.
+Android application initial test using GitHub Api, to try base options and save it into database.
